@@ -1,0 +1,67 @@
+/* PJ O'Rourke, simple gallery white. Tokens from the PJ demo shop: white, paper, ink, stone, hair, one platform-yellow dotted strip. */
+:root{
+  --white:#ffffff; --paper:#f6f5f2; --ink:#121212; --stone:#6e6c66; --hair:#e4e2dc; --yellow:#f2c200;
+  --f-display:'Bodoni Moda','Didot',serif; --f-body:'Inter',Helvetica,Arial,sans-serif; --f-mono:'IBM Plex Mono',Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--white)}
+body{margin:0;background:var(--white);color:var(--ink);font:15px/1.5 var(--f-body);
+  padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.shell{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+.strip{height:6px;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));background:radial-gradient(circle,var(--yellow) 1.6px,transparent 2px) 0 0/10px 6px repeat-x}
+.top{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:end;justify-content:space-between;padding-top:36px}
+.eyebrow{margin:0 0 10px;font:500 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+h1{margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(36px,6.4vw,80px);line-height:.98;letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:italic}
+h2{margin:0;font:500 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.count{margin:0;font:400 12px var(--f-mono);color:var(--stone);letter-spacing:.04em}
+.count b{color:var(--ink);font-weight:500}
+.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.8fr);gap:32px;align-items:start}
+@media (max-width:880px){.layout{grid-template-columns:minmax(0,1fr)}}
+.stage-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.stage{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--paper);overflow:hidden}
+.stage::after{content:"";position:absolute;left:24%;right:24%;bottom:7%;height:7%;background:radial-gradient(ellipse at center,rgba(18,18,18,.16),transparent 70%);pointer-events:none}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;transform:scale(1.22);transform-origin:50% 46%;cursor:grab;touch-action:pan-y}
+.stage canvas:active{cursor:grabbing}
+.loading{position:absolute;inset:0;display:grid;place-items:center;z-index:2;font:500 11px var(--f-mono);color:var(--stone);letter-spacing:.14em;text-transform:uppercase;background:rgba(246,245,242,.85)}
+.loading[hidden]{display:none}
+.hint{margin:0;font:400 11px var(--f-mono);color:var(--stone);letter-spacing:.04em}
+.panel{display:flex;flex-direction:column;gap:28px;min-width:0}
+.block{display:flex;flex-direction:column;gap:22px;min-width:0}
+.pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:420px){.pieces{grid-template-columns:minmax(0,1fr)}}
+.piece{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--hair);background:var(--white);min-width:0}
+.piece .chip{flex:none;width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 1px rgba(18,18,18,.22) inset}
+.piece .t{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.piece .t b{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.1em}
+.piece .t span{font-size:12px;color:var(--stone);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.piece:hover{border-color:var(--stone)}
+.piece[aria-checked="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink) inset}
+.palhead{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.palhead h2 span{color:var(--ink)}
+select{font:400 13px var(--f-body);background:var(--white);color:var(--ink);border:1px solid var(--hair);padding:8px 10px;max-width:100%}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:8px;max-height:280px;overflow:auto;padding:2px}
+.sw{all:unset;box-sizing:border-box;cursor:pointer;aspect-ratio:1/1;border-radius:50%;box-shadow:0 0 0 1px rgba(18,18,18,.2) inset}
+.sw:hover{outline:2px solid var(--ink);outline-offset:1px}
+.wallhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot p{margin:0;font:400 12px var(--f-mono);color:var(--stone);max-width:80ch}
+.piece:focus-visible,.sw:focus-visible,select:focus-visible,.btn:focus-visible,.card:focus-visible,.stage canvas:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.actions{flex-direction:row;flex-wrap:wrap;gap:8px}
+.btn{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--white);border:1px solid var(--ink);padding:10px 14px;cursor:pointer}
+.btn:hover{background:var(--paper)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.btn.primary{background:var(--ink);color:var(--white)}
+.btn.primary:hover{background:#2a2a2a}
+.wall-sec{display:flex;flex-direction:column;gap:14px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{all:unset;box-sizing:border-box;cursor:pointer;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;border:1px solid transparent}
+.card canvas{width:100%;height:auto;aspect-ratio:4/3;display:block;transform:scale(1.18)}
+.card .cap{display:flex;gap:6px;align-items:center;padding:10px 12px;background:var(--white);border-top:1px solid var(--hair);position:relative}
+.card .cap i{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 1px rgba(18,18,18,.2) inset}
+.card .cap span{margin-left:auto;font:400 10px var(--f-mono);color:var(--stone);text-transform:uppercase;letter-spacing:.08em}
+.card:hover{border-color:var(--stone)}
+.card.on{border-color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--white);font:500 12px var(--f-mono);padding:10px 14px;opacity:0;pointer-events:none;transition:opacity .15s}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}

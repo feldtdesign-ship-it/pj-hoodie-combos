@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kicks Hoodie Combos</title>
+<meta name="description" content="Pick any blank color for the body, sleeves and pocket of the New York Kicks hoodie, and spin it in 3D.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The hoodie, every color">
+<meta property="og:description" content="Pick any blank color for the body, sleeves and pocket of the New York Kicks hoodie, and spin it in 3D.">
+<meta property="og:image" content="https://feldtdesign-ship-it.github.io/pj-hoodie-combos/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://feldtdesign-ship-it.github.io/pj-hoodie-combos/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://feldtdesign-ship-it.github.io/pj-hoodie-combos/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="strip" aria-hidden="true"></div>
+<div class="shell">
+  <header class="top">
+    <div>
+      <p class="eyebrow">PJ O'Rourke · New York Kicks</p>
+      <h1>The hoodie, <em>every color</em></h1>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </header>
+
+  <div class="layout">
+    <section class="stage-col" aria-label="Preview">
+      <div class="stage" id="stage">
+        <canvas id="cv" width="800" height="600" aria-label="Hoodie, drag to turn"></canvas>
+        <div class="loading" id="loading">Loading the hoodie</div>
+      </div>
+      <p class="hint">Drag the hoodie to turn it. Arrow keys work too.</p>
+    </section>
+
+    <aside class="panel" aria-label="Controls">
+      <div class="block">
+        <h2>Pieces</h2>
+        <div class="pieces" id="pieces" role="radiogroup" aria-label="Piece to recolor"></div>
+      </div>
+      <div class="block">
+        <div class="palhead">
+          <h2>Colors for the <span id="picking">body</span></h2>
+          <select id="palette" aria-label="Color set"></select>
+        </div>
+        <div class="swatches" id="swatches"></div>
+      </div>
+      <div class="block actions">
+        <button class="btn primary" id="shuffle">Shuffle</button>
+        <button class="btn" id="spin" aria-pressed="true">Spin</button>        <button class="btn" id="reset">Kicks original</button>
+        <button class="btn" id="save">Save PNG</button>
+        <button class="btn" id="link">Copy link</button>
+      </div>
+    </aside>
+  </div>
+
+  <section class="wall-sec" aria-label="Combo wall">
+    <div class="wallhead"><h2>Combo wall</h2><button class="btn" id="rewall">Reshuffle wall</button></div>
+    <div class="wall" id="wall"></div>
+  </section>
+  <footer class="foot"><p>Colors come from the manufacturers' product photos and may differ from the physical fabric. Order a swatch card before you commit.</p></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
